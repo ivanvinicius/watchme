@@ -36,6 +36,7 @@ As principais tecnologias utilizadas na construção deste projeto foram:
 
 * [React.JS](https://github.com/facebook/react)
 * [Json Server](https://www.npmjs.com/package/json-server)
+* [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 
 ## Instalação e utilização
 
@@ -47,6 +48,7 @@ Instalações necessárias antes de executar o projeto.
 
 1. Node
 2. Yarn
+3. React Dev Tools
   
 ### Instalação
 

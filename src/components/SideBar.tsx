@@ -38,4 +38,9 @@ function SideBarComponent({
   )
 }
 
+/**
+ * Não comparamos as prevProps com as nextProps, pois seria impossível indicar
+ * o link ativo no sideBar.
+ */
+
 export const SideBar = memo(SideBarComponent)
