@@ -9,21 +9,21 @@ interface MovieCardProps {
   runtime: string
 }
 
-export function MovieCard(props: MovieCardProps) {
+export function MovieCard({ poster, title, rating, runtime }: MovieCardProps) {
   return (
     <div className="movie-card">
-      <img src={props.poster} alt={props.title} />
+      <img src={poster} alt={title} />
 
       <div>
         <div className="movie-info">
-          <span>{props.title}</span>
+          <span>{title}</span>
           <div className="meta">
             <div>
-              <Star /> {props.rating}
+              <Star /> {rating}
             </div>
 
             <div>
-              <Clock /> {props.runtime}
+              <Clock /> {runtime}
             </div>
           </div>
         </div>

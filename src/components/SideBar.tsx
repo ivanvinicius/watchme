@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { memo } from 'react'
+
+import { IGenreProps } from '../@types/IGenreProps'
+
 import { Button } from './Button'
 
 interface SideBarProps {
-  genres: Array<{
-    id: number
-    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family'
-    title: string
-  }>
+  genres: IGenreProps[]
   selectedGenreId: number
-  buttonClickCallback: (args: any) => void //eslint-disable-line
+  buttonClickCallback: (args: any) => void
 }
 
-export function SideBar({
+function SideBarComponent({
   genres,
   selectedGenreId,
   buttonClickCallback
@@ -35,3 +37,7 @@ export function SideBar({
     </nav>
   )
 }
+
+export const SideBar = memo(SideBarComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.genres, nextProps.genres)
+})

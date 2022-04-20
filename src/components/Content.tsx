@@ -1,25 +1,16 @@
+import { memo } from 'react'
+
+import { IGenreProps } from '../@types/IGenreProps'
+import { IMovieProps } from '../@types/IMovieProps'
+
 import { MovieCard } from './MovieCard'
 
 interface ContentProps {
-  selectedGenre: {
-    id: number
-    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family'
-    title: string
-  }
-
-  movies: Array<{
-    imdbID: string
-    Title: string
-    Poster: string
-    Ratings: Array<{
-      Source: string
-      Value: string
-    }>
-    Runtime: string
-  }>
+  selectedGenre: IGenreProps
+  movies: IMovieProps[]
 }
 
-export function Content({ selectedGenre, movies }: ContentProps) {
+export function ContentComponent({ selectedGenre, movies }: ContentProps) {
   return (
     <div className="container">
       <header>
@@ -44,3 +35,12 @@ export function Content({ selectedGenre, movies }: ContentProps) {
     </div>
   )
 }
+
+/**
+ * Sem o memo, esse componente é renderizado 3 vezes por causa dos 3 estados do
+ * componente pai. Utilizando o memo, o componente é reenderizado apenas quando
+ * o estado de movies é alterado, já que o o id do genre não muda.
+ */
+export const Content = memo(ContentComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.movies, nextProps.movies)
+})
