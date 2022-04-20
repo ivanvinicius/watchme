@@ -1,13 +1,13 @@
 import { memo } from 'react'
 
-import { IGenreProps } from '../@types/IGenreProps'
-import { IMovieProps } from '../@types/IMovieProps'
+import { IGenre } from '../interfaces/IGenre'
+import { IMovie } from '../interfaces/IMovie'
 
 import { MovieCard } from './MovieCard'
 
 interface ContentProps {
-  selectedGenre: IGenreProps
-  movies: IMovieProps[]
+  selectedGenre: IGenre
+  movies: IMovie[]
 }
 
 export function ContentComponent({ selectedGenre, movies }: ContentProps) {

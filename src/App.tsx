@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 
-import { IGenreProps } from './@types/IGenreProps'
-import { IMovieProps } from './@types/IMovieProps'
+import { IGenre } from './interfaces/IGenre'
+import { IMovie } from './interfaces/IMovie'
 import { SideBar } from './components/SideBar'
 import { Content } from './components/Content'
 import { api } from './services/api'
@@ -12,11 +12,9 @@ import './styles/content.scss'
 
 export function App() {
   const [selectedGenreId, setSelectedGenreId] = useState(1)
-  const [genres, setGenres] = useState<IGenreProps[]>([])
-  const [movies, setMovies] = useState<IMovieProps[]>([])
-  const [selectedGenre, setSelectedGenre] = useState<IGenreProps>(
-    {} as IGenreProps
-  )
+  const [genres, setGenres] = useState<IGenre[]>([])
+  const [movies, setMovies] = useState<IMovie[]>([])
+  const [selectedGenre, setSelectedGenre] = useState<IGenre>({} as IGenre)
 
   const handleClickButton = useCallback((id: number) => {
     setSelectedGenreId(id)
@@ -24,7 +22,7 @@ export function App() {
 
   useEffect(() => {
     async function fetchGenres() {
-      const { data } = await api.get<IGenreProps[]>('/genres')
+      const { data } = await api.get<IGenre[]>('/genres')
       setGenres(data)
     }
 
@@ -33,19 +31,19 @@ export function App() {
 
   useEffect(() => {
     async function fetchMoviesByGenre() {
-      const { data } = await api.get<IMovieProps[]>(
+      const { data } = await api.get<IMovie[]>(
         `movies/?Genre_id=${selectedGenreId}`
       )
       setMovies(data)
     }
 
-    async function fetchSelectedGenre() {
-      const { data } = await api.get<IGenreProps>(`genres/${selectedGenreId}`)
+    async function fetchGenre() {
+      const { data } = await api.get<IGenre>(`genres/${selectedGenreId}`)
       setSelectedGenre(data)
     }
 
     fetchMoviesByGenre()
-    fetchSelectedGenre()
+    fetchGenre()
   }, [selectedGenreId])
 
   return (

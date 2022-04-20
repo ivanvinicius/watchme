@@ -2,12 +2,12 @@
 
 import { memo } from 'react'
 
-import { IGenreProps } from '../@types/IGenreProps'
+import { IGenre } from '../interfaces/IGenre'
 
 import { Button } from './Button'
 
 interface SideBarProps {
-  genres: IGenreProps[]
+  genres: IGenre[]
   selectedGenreId: number
   buttonClickCallback: (args: any) => void
 }

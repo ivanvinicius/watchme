@@ -1,4 +1,4 @@
-export interface IMovieProps {
+export interface IMovie {
   imdbID: string
   Title: string
   Poster: string
