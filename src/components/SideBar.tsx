@@ -1,13 +1,13 @@
-import { Button } from "./Button";
+import { Button } from './Button'
 
 interface SideBarProps {
   genres: Array<{
-    id: number;
-    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
-    title: string;
-  }>;
-  selectedGenreId: number;
-  buttonClickCallback: (args: any) => void;
+    id: number
+    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family'
+    title: string
+  }>
+  selectedGenreId: number
+  buttonClickCallback: (args: any) => void //eslint-disable-line
 }
 
 export function SideBar({
@@ -17,7 +17,9 @@ export function SideBar({
 }: SideBarProps) {
   return (
     <nav className="sidebar">
-      <span>Watch<p>Me</p></span>
+      <span>
+        Watch<p>Me</p>
+      </span>
 
       <div className="buttons-container">
         {genres.map(genre => (
@@ -30,7 +32,6 @@ export function SideBar({
           />
         ))}
       </div>
-
     </nav>
   )
 }
