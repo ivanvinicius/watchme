@@ -23,17 +23,29 @@ export function App() {
   }, [])
 
   useEffect(() => {
-    api.get('genres').then(res => setGenres(res.data))
+    async function fetchGenres() {
+      const { data } = await api.get<IGenreProps[]>('/genres')
+      setGenres(data)
+    }
+
+    fetchGenres()
   }, [])
 
   useEffect(() => {
-    api
-      .get<IMovieProps[]>(`movies/?Genre_id=${selectedGenreId}`)
-      .then(res => setMovies(res.data))
+    async function fetchMoviesByGenre() {
+      const { data } = await api.get<IMovieProps[]>(
+        `movies/?Genre_id=${selectedGenreId}`
+      )
+      setMovies(data)
+    }
 
-    api
-      .get<IGenreProps>(`genres/${selectedGenreId}`)
-      .then(res => setSelectedGenre(res.data))
+    async function fetchSelectedGenre() {
+      const { data } = await api.get<IGenreProps>(`genres/${selectedGenreId}`)
+      setSelectedGenre(data)
+    }
+
+    fetchMoviesByGenre()
+    fetchSelectedGenre()
   }, [selectedGenreId])
 
   return (
