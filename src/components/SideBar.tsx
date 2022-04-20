@@ -38,6 +38,4 @@ function SideBarComponent({
   )
 }
 
-export const SideBar = memo(SideBarComponent, (prevProps, nextProps) => {
-  return Object.is(prevProps.genres, nextProps.genres)
-})
+export const SideBar = memo(SideBarComponent)
