@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { memo } from 'react'
-
 import { IGenre } from '../interfaces/IGenre'
 
 import { Button } from './Button'
@@ -12,7 +10,7 @@ interface SideBarProps {
   buttonClickCallback: (args: any) => void
 }
 
-function SideBarComponent({
+export function SideBar({
   genres,
   selectedGenreId,
   buttonClickCallback
@@ -37,10 +35,3 @@ function SideBarComponent({
     </nav>
   )
 }
-
-/**
- * Não comparamos as prevProps com as nextProps, pois seria impossível indicar
- * o link ativo no sideBar.
- */
-
-export const SideBar = memo(SideBarComponent)

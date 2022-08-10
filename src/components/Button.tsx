@@ -1,6 +1,7 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, memo } from 'react'
 
 import { Icon } from './Icon'
+
 import '../styles/button.scss'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +10,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   selected: boolean
 }
 
-export function Button({ iconName, title, selected, ...rest }: ButtonProps) {
+export function ButtonComponent({
+  iconName,
+  title,
+  selected,
+  ...rest
+}: ButtonProps) {
   return (
     <button
       type="button"
@@ -21,3 +27,7 @@ export function Button({ iconName, title, selected, ...rest }: ButtonProps) {
     </button>
   )
 }
+
+export const Button = memo(ButtonComponent, (prevProps, nextProps) => {
+  return prevProps.selected === nextProps.selected
+})
